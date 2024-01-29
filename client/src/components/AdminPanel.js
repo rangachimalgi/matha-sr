@@ -7,7 +7,7 @@ const AdminPanel = () => {
 
     const fetchData = async () => {
         try {
-          const response = await axios.get("http://localhost:8085/api/fetchData"); // Add the route to fetch data
+          const response = await axios.get("https://srs-matha.onrender.com/api/fetchData"); // Add the route to fetch data
           setData(response.data);
         } catch (error) {
           console.error("Error fetching data:", error.message);
@@ -28,7 +28,7 @@ const AdminPanel = () => {
     try {
       // Validate and add new data
       if (newData.name && newData.phone && newData.seva && newData.notify) {
-        const response = await axios.post("http://localhost:8085/api/addData", newData);
+        const response = await axios.post("https://srs-matha.onrender.com/api/addData", newData);
   
         // Assuming the server responds with the added data
         const addedData = response.data;
