@@ -14,7 +14,7 @@ const NavBar = () => {
 
   const handleAdminLogin = async (username, password) => {
     try {
-      const response = await axios.post('http://localhost:8084/api/auth/admin-login', {
+      const response = await axios.post('http://localhost:8085/api/auth/admin-login', {
         username: "admin",
         password: "admin123"      
       });
