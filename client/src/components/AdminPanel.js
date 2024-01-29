@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useTable } from "react-table";
 import axios from "axios";
+import DatePicker from "react-datepicker"; // Import the DatePicker component
+import "react-datepicker/dist/react-datepicker.css"; // Import the styles
 
 const AdminPanel = () => {
     const [data, setData] = useState([]);
@@ -18,7 +20,15 @@ const AdminPanel = () => {
         fetchData(); // Fetch data when the component mounts
       }, []);
 
-  const [newData, setNewData] = useState({ name: "", phone: "", seva: "", notify: "" });
+  const [newData, setNewData] = useState({ name: "", phone: "", seva: "", selectedDate: new Date(), notify: "",  });
+
+  const handleDateChange = (date) => {
+    // Convert the date string from the server to a JavaScript Date object
+    const selectedDate = new Date(date);
+  
+    setNewData({ ...newData, selectedDate });
+  };
+  
 
   const handleChange = (e) => {
     setNewData({ ...newData, [e.target.name]: e.target.value });
@@ -27,8 +37,13 @@ const AdminPanel = () => {
   const handleAddData = async () => {
     try {
       // Validate and add new data
-      if (newData.name && newData.phone && newData.seva && newData.notify) {
-        const response = await axios.post("https://srs-matha.onrender.com/api/addData", newData);
+      if (newData.name && newData.phone && newData.seva && newData.selectedDate && newData.notify) {
+        // Use 'date' instead of 'selectedDate'
+        const { selectedDate, ...requestData } = newData;
+        const response = await axios.post("https://srs-matha.onrender.com/api/addData", {
+          ...requestData,
+          date: selectedDate,
+        });
   
         // Assuming the server responds with the added data
         const addedData = response.data;
@@ -37,7 +52,7 @@ const AdminPanel = () => {
         if (addedData && addedData._id && addedData.name && addedData.phone && addedData.seva && addedData.notify) {
           const updatedData = [...data, addedData];
           setData(updatedData);
-          setNewData({ name: "", phone: "", seva: "", notify: "" });
+          setNewData({ name: "", phone: "", seva: "", selectedDate: "", notify: "" });
         } else {
           console.error("Invalid response format from the server");
         }
@@ -49,12 +64,26 @@ const AdminPanel = () => {
     }
   };
   
+  
   const columns = React.useMemo(
     () => [
       { Header: "ID", accessor: "_id" },
       { Header: "Name", accessor: "name" },
       { Header: "Phone", accessor: "phone" },
       { Header: "Seva", accessor: "seva" },
+      {
+  Header: "Selected Date",
+  accessor: "date",
+  Cell: ({ value }) => {
+    const formattedDate = new Date(value).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+
+    return <span>{formattedDate}</span>;
+  },
+},
       { Header: "Notify", accessor: "notify" }
     ],
     []
@@ -66,7 +95,6 @@ const AdminPanel = () => {
   return (
     <div>
       <h1>User Data</h1>
-
       {/* Form for adding new data */}
       <div>
         <label>
@@ -80,6 +108,10 @@ const AdminPanel = () => {
         <label>
           Seva:
           <input type="text" name="seva" value={newData.seva} onChange={handleChange} />
+        </label>
+        <label>
+          Date:
+          <DatePicker selected={newData.selectedDate} onChange={handleDateChange} dateFormat="MMMM d, yyyy" />
         </label>
         <label>
           Notify:

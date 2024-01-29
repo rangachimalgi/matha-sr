@@ -13,6 +13,10 @@ const dataSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  date: {
+    type: Date,
+    required: true,
+  },
   notify: {
     type: String,
     required: true,
