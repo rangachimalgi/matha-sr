@@ -1,0 +1,66 @@
+/* AdminPanel.css */
+
+.admin-panel-container {
+    font-family: Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto; /* Centering the container */
+    padding: 20px;
+  }
+  
+  /* Adjust the margin to 0 for the admin panel container */
+  .admin-panel-container {
+    margin: 0;
+  }
+
+  /* Add this to your existing CSS styles */
+
+  
+  /* Form styles */
+.form-container {
+    margin-bottom: 20px; /* Add margin at the bottom to create space between the form and the table */
+  }
+  
+  .input-field {
+    margin-bottom: 10px; /* Add margin at the bottom of each input field */
+  }
+  
+  .add-data-button {
+    background-color: #4caf50; /* Green background color */
+    color: white; /* White text color */
+    padding: 10px 15px; /* Padding for the button */
+    border: none; /* Remove border */
+    cursor: pointer; /* Add pointer cursor on hover */
+  }
+  
+  /* Hover effect on the button */
+  .add-data-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+  }
+  
+ /* Table styles */
+.data-table {
+    width: 150%;
+    border-collapse: collapse;
+    margin: 0;
+  }
+  
+  .data-table th,
+  .data-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .data-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .data-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .data-table tr:hover {
+    background-color: #e5e5e5;
+  }
+  
+  

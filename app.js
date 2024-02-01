@@ -100,32 +100,57 @@ cron.schedule('*/5 * * * *', () => {
   });
 });
 
+// Schedule messages task
+cron.schedule('*/5 * * * *', () => {
+  const currentDate = new Date();
+  scheduledMessages.forEach((scheduledMessage, index) => {
+    const { phoneNumber, message, scheduledDate } = scheduledMessage;
+    const sendDate = new Date(scheduledDate);
+
+    // Check if it's time to send the message (e.g., a day before the scheduled date)
+    if (sendDate.getDate() === currentDate.getDate() - 1) {
+      // Send the message using Twilio
+      client.messages.create({
+        body: message,
+        from: 'whatsapp:+12409492174', // Replace with your Twilio number
+        to: phoneNumber,
+      });
+
+      // Remove the scheduled message from the array
+      scheduledMessages.splice(index, 1);
+    }
+  });
+});
+
 
 
 // Endpoint to send an instant message
 app.post('/api/send-instant-message', async (req, res) => {
 
-const accountSid = 'ACbb72d2166f8fef13938252b183f1950c';
-const authToken = 'dc014495211336d798a61b4a358fe9e7';
-const client = new twilio(accountSid, authToken);
-
-  const { phoneNumber, message } = req.body;
-
-  try {
-    // Use Twilio or your preferred messaging service to send the instant message
-    const result = await client.messages.create({
-      body: message,
-      from: 'whatsapp:+14155238886',
-      to: `whatsapp:${phoneNumber}`,
-    });
-
-    console.log('Instant message sent successfully:', result);
-    res.status(200).json({ success: true, message: 'Instant message sent successfully.' });
-  } catch (error) {
-    console.error('Error sending instant message:', error);
-    res.status(500).json({ success: false, error: 'Error sending instant message.' });
-  }
-});
+  const accountSid = process.env.TWILIO_ACCOUNT_SID;;
+  const authToken = process.env.TWILIO_AUTH_TOKEN;;
+  const client = new twilio(accountSid, authToken);
+  
+  console.log("TWILIO_ACCOUNT_SID:", process.env.TWILIO_ACCOUNT_SID);
+  console.log("TWILIO_AUTH_TOKEN:", process.env.TWILIO_AUTH_TOKEN);
+  
+    const { phoneNumber, message } = req.body;
+  
+    try {
+      // Use Twilio or your preferred messaging service to send the instant message
+      const result = await client.messages.create({
+        body: message,
+        from: 'whatsapp:+14155238886',
+        to: `whatsapp:${phoneNumber}`,
+      });
+  
+      console.log('Instant message sent successfully:', result);
+      res.status(200).json({ success: true, message: 'Instant message sent successfully.' });
+    } catch (error) {
+      console.error('Error sending instant message:', error);
+      res.status(500).json({ success: false, error: 'Error sending instant message.' });
+    }
+  });
 
 
 const PORT = process.env.PORT || 8085;
