@@ -57,7 +57,7 @@ app.post('/send-whatsapp', async (req, res) => {
   try {
     const result = await client.messages.create({
       body: message,
-      from: 'whatsapp:+14155238886',
+      from: 'whatsapp:+16592710768',
       to: `whatsapp:${toPhoneNumber}`,
     });
 
@@ -96,30 +96,30 @@ cron.schedule('*/5 * * * *', () => {
 
 
 
-// Endpoint to send an instant message
-app.post('/api/send-instant-message', async (req, res) => {
+// // Endpoint to send an instant message
+// app.post('/api/send-instant-message', async (req, res) => {
 
-const accountSid = 'ACbb72d2166f8fef13938252b183f1950c';
-const authToken = 'dc014495211336d798a61b4a358fe9e7';
-const client = new twilio(accountSid, authToken);
+// const accountSid = 'ACbb72d2166f8fef13938252b183f1950c';
+// const authToken = 'dc014495211336d798a61b4a358fe9e7';
+// const client = new twilio(accountSid, authToken);
 
-  const { phoneNumber, message } = req.body;
+//   const { phoneNumber, message } = req.body;
 
-  try {
-    // Use Twilio or your preferred messaging service to send the instant message
-    const result = await client.messages.create({
-      body: message,
-      from: 'whatsapp:+14155238886',
-      to: `whatsapp:${phoneNumber}`,
-    });
+//   try {
+//     // Use Twilio or your preferred messaging service to send the instant message
+//     const result = await client.messages.create({
+//       body: message,
+//       from: 'whatsapp:+18777804236',
+//       to: `whatsapp:${phoneNumber}`,
+//     });
 
-    console.log('Instant message sent successfully:', result);
-    res.status(200).json({ success: true, message: 'Instant message sent successfully.' });
-  } catch (error) {
-    console.error('Error sending instant message:', error);
-    res.status(500).json({ success: false, error: 'Error sending instant message.' });
-  }
-});
+//     console.log('Instant message sent successfully:', result);
+//     res.status(200).json({ success: true, message: 'Instant message sent successfully.' });
+//   } catch (error) {
+//     console.error('Error sending instant message:', error);
+//     res.status(500).json({ success: false, error: 'Error sending instant message.' });
+//   }
+// });
 
 
 const PORT = process.env.PORT || 8082;

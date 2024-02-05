@@ -63,7 +63,7 @@ app.post('/send-whatsapp', async (req, res) => {
   try {
     const result = await client.messages.create({
       body: message,
-      from: 'whatsapp:+14155238886',
+      from: 'whatsapp:+16592710768',
       to: `whatsapp:${toPhoneNumber}`,
     });
 
@@ -90,7 +90,7 @@ cron.schedule('*/5 * * * *', () => {
       // Send the message using Twilio
       client.messages.create({
         body: message,
-        from: 'whatsapp:+12409492174', // Replace with your Twilio number
+        from: '+16592710768', // Replace with your Twilio SMS-enabled number
         to: phoneNumber,
       });
 
@@ -112,7 +112,7 @@ cron.schedule('*/5 * * * *', () => {
       // Send the message using Twilio
       client.messages.create({
         body: message,
-        from: 'whatsapp:+12409492174', // Replace with your Twilio number
+        from: '+16592710768', // Replace with your Twilio SMS-enabled number
         to: phoneNumber,
       });
 
@@ -127,31 +127,31 @@ cron.schedule('*/5 * * * *', () => {
 // Endpoint to send an instant message
 app.post('/api/send-instant-message', async (req, res) => {
 
-  const accountSid = process.env.TWILIO_ACCOUNT_SID;;
-  const authToken = process.env.TWILIO_AUTH_TOKEN;;
+  const accountSid = process.env.TWILIO_ACCOUNT_SID;
+  const authToken = process.env.TWILIO_AUTH_TOKEN;
   const client = new twilio(accountSid, authToken);
   
   console.log("TWILIO_ACCOUNT_SID:", process.env.TWILIO_ACCOUNT_SID);
   console.log("TWILIO_AUTH_TOKEN:", process.env.TWILIO_AUTH_TOKEN);
   
-    const { phoneNumber, message } = req.body;
+  const { phoneNumber, message } = req.body;
   
-    try {
-      // Use Twilio or your preferred messaging service to send the instant message
-      const result = await client.messages.create({
-        body: message,
-        from: 'whatsapp:+14155238886',
-        to: `whatsapp:${phoneNumber}`,
-      });
+  try {
+    // Use Twilio or your preferred messaging service to send the instant message
+    const result = await client.messages.create({
+      body: message,
+      from: '+16592710768', // Replace with your Twilio SMS-enabled number
+      to: phoneNumber,
+      messagingServiceSid: 'MGc8b8a8a6e2515b5edf1eb1dab9be4dac', // Replace with your Twilio Messaging Service SID
+    });
   
-      console.log('Instant message sent successfully:', result);
-      res.status(200).json({ success: true, message: 'Instant message sent successfully.' });
-    } catch (error) {
-      console.error('Error sending instant message:', error);
-      res.status(500).json({ success: false, error: 'Error sending instant message.' });
-    }
-  });
-
+    console.log('Instant message sent successfully:', result);
+    res.status(200).json({ success: true, message: 'Instant message sent successfully.' });
+  } catch (error) {
+    console.error('Error sending instant message:', error);
+    res.status(500).json({ success: false, error: 'Error sending instant message.' });
+  }
+});
 
 const PORT = process.env.PORT || 8085;
 
