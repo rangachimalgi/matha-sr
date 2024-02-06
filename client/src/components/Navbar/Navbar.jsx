@@ -23,7 +23,7 @@ const NavBar = () => {
         console.log("Admin login successful");
         setIsLoggedIn(true);
       } else {
-        console.log("Admin login failed:", response.data.message);
+        // console.log("Admin login failed:", response.data.message);
         // Handle failed login (show an error message, etc.)
       }
     } catch (error) {

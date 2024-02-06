@@ -69,18 +69,18 @@ const AdminPanel = () => {
 
   const scheduleMessage = async (phoneNumber) => {
     try {
-      console.log("scheduleMessage called with phoneNumber:", phoneNumber);
+      // console.log("scheduleMessage called with phoneNumber:", phoneNumber);
   
       // Delay the execution of the message sending logic by 5 minutes (300,000 milliseconds)
       const delayInMilliseconds = 10 * 1000; // 10 seconds
-      console.log("Delaying for", delayInMilliseconds, "milliseconds");
+      // console.log("Delaying for", delayInMilliseconds, "milliseconds");
       await new Promise(resolve => setTimeout(resolve, delayInMilliseconds));
   
       // Now, make an API request to trigger the send-instant-message action
       console.log("Making API request to send-instant-message");
       const response = await axios.post("https://srs-matha.onrender.com/api/send-instant-message", {
         phoneNumber,
-        message: "Your scheduled message content here",
+        message: "Dear sir / madam.. Pls attend your seva at raghavrndra swamy mutt, lingampally, kachiguda., Hyderabad. Pls contact our temple office for further details. 040-27565333",
       });
   
       if (response.status === 200) {
@@ -94,7 +94,7 @@ const AdminPanel = () => {
   };
   
   const handleScheduleMessage = (phoneNumber) => {
-    console.log("Button clicked! Phone Number:", phoneNumber);
+    // console.log("Button clicked! Phone Number:", phoneNumber);
     scheduleMessage(phoneNumber);
   };
 
