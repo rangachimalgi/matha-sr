@@ -54,26 +54,26 @@ app.get('*', function (req, res) {
   res.sendFile(index);
 });
 
-app.post('/send-whatsapp', async (req, res) => {
-  const { to, message } = req.body;
+// app.post('/send-whatsapp', async (req, res) => {
+//   const { to, message } = req.body;
 
-   // Hardcode the 'to' phone number for testing
-   const toPhoneNumber = '+917259672141';
+//    // Hardcode the 'to' phone number for testing
+//    const toPhoneNumber = '+917259672141';
 
-  try {
-    const result = await client.messages.create({
-      body: message,
-      from: 'whatsapp:+16592710768',
-      to: `whatsapp:${toPhoneNumber}`,
-    });
+//   try {
+//     const result = await client.messages.create({
+//       body: message,
+//       from: fromPhoneNumber,
+//       to: `whatsapp:${toPhoneNumber}`,
+//     });
 
-    console.log(result);
-    res.status(200).json({ success: true });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ success: false, error: error.message });
-  }
-});
+//     console.log(result);
+//     res.status(200).json({ success: true });
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ success: false, error: error.message });
+//   }
+// });
 
 // Scheduled messages array
 const scheduledMessages = [];
@@ -90,7 +90,7 @@ cron.schedule('*/5 * * * *', () => {
       // Send the message using Twilio
       client.messages.create({
         body: message,
-        from: '+16592710768', // Replace with your Twilio SMS-enabled number
+        from: fromPhoneNumber, // Replace with your Twilio SMS-enabled number
         to: phoneNumber,
       });
 
@@ -99,6 +99,8 @@ cron.schedule('*/5 * * * *', () => {
     }
   });
 });
+
+const fromPhoneNumber = process.env.TWILIO_SMS_NUMBER; 
 
 // Schedule messages task
 cron.schedule('*/5 * * * *', () => {
@@ -112,7 +114,7 @@ cron.schedule('*/5 * * * *', () => {
       // Send the message using Twilio
       client.messages.create({
         body: message,
-        from: '+16592710768', // Replace with your Twilio SMS-enabled number
+        from: fromPhoneNumber, // Use the TWILIO_SMS_NUMBER environment variable
         to: phoneNumber,
       });
 
@@ -123,12 +125,13 @@ cron.schedule('*/5 * * * *', () => {
 });
 
 
-
 // Endpoint to send an instant message
 app.post('/api/send-instant-message', async (req, res) => {
 
   const accountSid = process.env.TWILIO_ACCOUNT_SID;
   const authToken = process.env.TWILIO_AUTH_TOKEN;
+  const messagingServiceSid = process.env.TWILIO_MESSAGING_SERVICE_SID;
+  const twilioSMSNumber = process.env.TWILIO_SMS_NUMBER; // Change this line
   const client = new twilio(accountSid, authToken);
   
   const { phoneNumber, message } = req.body;
@@ -137,9 +140,9 @@ app.post('/api/send-instant-message', async (req, res) => {
     // Use Twilio or your preferred messaging service to send the instant message
     const result = await client.messages.create({
       body: message,
-      from: '+16592710768', // Replace with your Twilio SMS-enabled number
+      from: twilioSMSNumber, // Replace with your Twilio SMS-enabled number
       to: phoneNumber,
-      messagingServiceSid: 'MGc8b8a8a6e2515b5edf1eb1dab9be4dac', // Replace with your Twilio Messaging Service SID
+      messagingServiceSid: messagingServiceSid, // Replace with your Twilio Messaging Service SID
     });
   
     console.log('Instant message sent successfully:', result);
