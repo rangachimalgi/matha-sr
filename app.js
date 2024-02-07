@@ -11,6 +11,7 @@ import twilio from "twilio";
 import cron from "node-cron";  
 import adminRoutes from "./routes/adminRoutes.js"
 import apiRoutes from "./routes/apiRoutes.js"
+import "./keepAlive.js"
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
