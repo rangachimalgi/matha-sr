@@ -21,9 +21,17 @@
   }
   
   .input-field {
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid #ccc; /* Add a border to the input field */
+    background-color: #fff;
     margin-bottom: 10px; /* Add margin at the bottom of each input field */
   }
   
+  .input-field:focus {
+    border-color: #007bff; /* Change border color on focus to indicate active input */
+  }
+
   .add-data-button {
     background-color: #4caf50; /* Green background color */
     color: white; /* White text color */

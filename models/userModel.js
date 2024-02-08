@@ -5,6 +5,9 @@ const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   phone: { type: String, required: true },
   seva: { type: String, required: true },
+  gotra: { type: String, required: true },
+  purpose: { type: String, required: true },
+  peno: { type: String, required: true },
   date: {
     type: Date, required: true // Corrected type to Date
   },

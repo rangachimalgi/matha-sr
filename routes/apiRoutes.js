@@ -7,13 +7,16 @@ const router = express.Router();
 // Route to add data
 router.post('/addData', async (req, res) => {
   try {
-    const { name, phone, seva, date, notify } = req.body;
+    const { name, phone, seva, gotra, purpose, peno, date, notify } = req.body;
 
     // Create a new instance of the DataModel with the provided data
     const newData = new DataModel({
       name,
       phone,
       seva,
+      gotra,
+      purpose,
+      peno,
       date,
       notify,
     });

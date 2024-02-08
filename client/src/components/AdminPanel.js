@@ -13,7 +13,7 @@ const AdminPanel = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("https://srs-matha.onrender.com/api/fetchData");
+      const response = await axios.get("http://localhost:8085/api/fetchData");
       setData(response.data);
     } catch (error) {
       console.error("Error fetching data:", error.message);
@@ -28,6 +28,9 @@ const AdminPanel = () => {
     name: "",
     phone: "",
     seva: "",
+    gotra: "",
+    peno: "",
+    purpose: "",
     selectedDate: new Date(),
     notify: "",
   });
@@ -43,19 +46,19 @@ const AdminPanel = () => {
 
   const handleAddData = async () => {
     try {
-      if (newData.name && newData.phone && newData.seva && newData.selectedDate && newData.notify) {
+      if (newData.name && newData.phone && newData.seva && newData.gotra && newData.peno && newData.purpose && newData.peno && newData.selectedDate && newData.notify) {
         const { selectedDate, ...requestData } = newData;
-        const response = await axios.post("https://srs-matha.onrender.com/api/addData", {
+        const response = await axios.post("http://localhost:8085/api/addData", {
           ...requestData,
           date: selectedDate,
         });
 
         const addedData = response.data;
 
-        if (addedData && addedData._id && addedData.name && addedData.phone && addedData.seva && addedData.notify) {
+        if (addedData && addedData._id && addedData.name && addedData.phone && addedData.seva && addedData.gotra  && addedData.purpose && addedData.notify) {
           const updatedData = [...data, addedData];
           setData(updatedData);
-          setNewData({ name: "", phone: "", seva: "", selectedDate: "", notify: "" });
+          setNewData({ name: "", phone: "", seva: "", gotra: "", purpose: "", peno: "", selectedDate: "", notify: "" });
         } else {
           console.error("Invalid response format from the server");
         }
@@ -78,7 +81,7 @@ const AdminPanel = () => {
   
       // Now, make an API request to trigger the send-instant-message action
       console.log("Making API request to send-instant-message");
-      const response = await axios.post("https://srs-matha.onrender.com/api/send-instant-message", {
+      const response = await axios.post("http://localhost:8085/api/send-instant-message", {
         phoneNumber,
         message: "Dear sir / madam.. Pls attend your seva at raghavrndra swamy mutt, lingampally, kachiguda., Hyderabad. Pls contact our temple office for further details. 040-27565333",
       });
@@ -102,6 +105,9 @@ const AdminPanel = () => {
     () => [
       { Header: "ID", accessor: "_id" },
       { Header: "Name", accessor: "name" },
+      { Header: "Gotra", accessor: "gotra"},
+      { Header: "Purpose", accessor: "purpose"},
+      { Header: "P.E No", accessor: "peno"},
       { Header: "Phone", accessor: "phone" },
       { Header: "Seva", accessor: "seva" },
       {
@@ -144,12 +150,24 @@ const AdminPanel = () => {
           <input type="text" name="name" value={newData.name} onChange={handleChange} className="input-field" />
         </label>
         <label>
+          Gotra:
+          <input type="text" name="gotra" value={newData.gotra} onChange={handleChange} className="input-field" />
+        </label>
+        <label>
+          P.E No:
+          <input type="text" name="peno" value={newData.peno} onChange={handleChange} className="input-field" />
+        </label>
+        <label>
           Phone:
           <input type="text" name="phone" value={newData.phone} onChange={handleChange} className="input-field" />
         </label>
         <label>
           Seva:
           <input type="text" name="seva" value={newData.seva} onChange={handleChange} className="input-field" />
+        </label>
+        <label>
+          Purpose:
+          <input type="text" name="purpose" value={newData.purpose} onChange={handleChange} className="input-field" />
         </label>
         <label>
           Date:
