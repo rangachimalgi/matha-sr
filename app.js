@@ -39,8 +39,6 @@ app.use("/api/auth", (req, res, next) => {
   next();
 }, authRoutes);
 
-app.use('/admin', adminRoutes);
-
 app.use("/api/orders", (req, res, next) => {
   console.log(`API Request Received: ${new Date().toISOString()} - Method: ${req.method} - Path: ${req.originalUrl}`);
   next();
