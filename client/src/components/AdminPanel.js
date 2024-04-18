@@ -13,7 +13,7 @@ const AdminPanel = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://srsvs-matha.com/api/fetchData");
+      const response = await axios.get("https://srsvs-matha.com/api/fetchData");
       setData(response.data);
     } catch (error) {
       console.error("Error fetching data:", error.message);
@@ -81,7 +81,7 @@ const AdminPanel = () => {
   
       // Now, make an API request to trigger the send-instant-message action
       console.log("Making API request to send-instant-message");
-      const response = await axios.post("http://srsvs-matha.com/api/send-instant-message", {
+      const response = await axios.post("https://srsvs-matha.com/api/send-instant-message", {
         phoneNumber,
         message: "Dear sir / madam.. Pls attend your seva at raghavrndra swamy mutt, lingampally, kachiguda., Hyderabad. Pls contact our temple office for further details. 040-27565333",
       });
