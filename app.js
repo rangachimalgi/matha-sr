@@ -152,6 +152,17 @@ app.post('/api/send-instant-message', async (req, res) => {
   }
 });
 
+app.post('/api/receive_sms', (req, res) => {
+  // Extract the message body (the SMS content), sender's number, and other details from the request
+  const { Body, From } = req.body;
+  console.log(`Received SMS from ${From}: ${Body}`);  // Log the message content and sender
+
+  // You can add more logic here if you need to process the message further
+
+  // Respond to Twilio's HTTP POST request
+  res.status(200).send('<Response></Response>'); // Sending an empty TwiML response to Twilio
+});
+
 const PORT = process.env.PORT || 8085;
 
 app.listen(PORT, () => {
