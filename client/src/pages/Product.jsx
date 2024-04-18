@@ -31,17 +31,9 @@ const Product = () => {
   useWindowScrollToTop();
 
   return (
-    <Fragment>
-      <Banner title={selectedProduct?.productName} />
-      <ProductDetails selectedProduct={selectedProduct} />
-      <ProductReviews selectedProduct={selectedProduct} />
-      <section className="related-products">
-        <Container>
-          <h3>You might also like</h3>
-        </Container>
-        <ShopList productItems={relatedProducts} />
-      </section>
-    </Fragment>
+    <div>
+      <h1>SRSVS Matha</h1>
+    </div>
   );
 };
 

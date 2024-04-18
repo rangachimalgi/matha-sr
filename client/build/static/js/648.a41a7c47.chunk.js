@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_ecommerce=self.webpackChunkreact_ecommerce||[]).push([[648],{8697:function(e,n,t){t.p,t(184)},9135:function(e,n,t){t(2791),t(5434),t(184)},167:function(e,n,t){t.r(n),t.d(n,{default:function(){return i}});var c=t(9439),r=(t(1413),t(4783)),u=t(184),a=t(2791),f=(t(9135),t(8697),t(76)),i=function(){var e=(0,a.useState)(r.RB.filter((function(e){return"sofa"===e.category}))),n=(0,c.Z)(e,2);n[0],n[1];return(0,f.Z)(),(0,u.jsx)("div",{children:(0,u.jsx)("h1",{children:"SRSVS Matha"})})}}}]);
+//# sourceMappingURL=648.a41a7c47.chunk.js.map

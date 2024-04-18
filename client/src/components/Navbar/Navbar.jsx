@@ -68,7 +68,7 @@ const NavBar = () => {
         <Container className="navbar-container">
           <Navbar.Brand to="/">
             <ion-icon name="bag"></ion-icon>
-            <h1 className="logo">Multimart</h1>
+            <h1 className="logo">SRSVS Matha</h1>
           </Navbar.Brand>
           {/* Media cart and toggle */}
           <div className="d-flex">
@@ -125,7 +125,7 @@ const NavBar = () => {
                 </Link>
               </Nav.Item>
 
-              <Nav.Item>
+              {/* <Nav.Item>
                 <Link
                   aria-label="Go to Shop Page"
                   className="navbar-link"
@@ -134,7 +134,7 @@ const NavBar = () => {
                 >
                   <span className="nav-link-label">Shop</span>
                 </Link>
-              </Nav.Item>
+              </Nav.Item> */}
 
               <Nav.Item>
                 <Link

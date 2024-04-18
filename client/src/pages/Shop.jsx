@@ -14,24 +14,9 @@ const Shop = () => {
   useWindowScrollToTop();
 
   return (
-    <Fragment>
-      <Banner title="product" />
-      <section className="filter-bar">
-        <Container className="filter-bar-contianer">
-          <Row className="justify-content-center">
-            <Col md={4}>
-              <FilterSelect setFilterList={setFilterList} />
-            </Col>
-            <Col md={8}>
-              <SearchBar setFilterList={setFilterList} />
-            </Col>
-          </Row>
-        </Container>
-        <Container>
-          <ShopList productItems={filterList} />
-        </Container>
-      </section>
-    </Fragment>
+    <div>
+      <h1>SRSVS Matha</h1>
+    </div>
   );
 };
 

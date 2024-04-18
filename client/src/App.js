@@ -35,7 +35,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/admin" element={<AdminPanel />} />
         </Routes>
-        <Footer />
+        {/* <Footer /> */}
       </Router>
     </Suspense>
   );

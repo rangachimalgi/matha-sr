@@ -12,21 +12,13 @@ const Home = () => {
   const bestSales = products.filter((item) => item.category === "sofa");
   useWindowScrollToTop();
   return (
-    <Fragment>
-      <SliderHome />
-      <Wrapper />
-      <Section
-        title="Big Discount"
-        bgColor="#f6f9fc"
-        productItems={discoutProducts}
-      />
-      <Section
-        title="New Arrivals"
-        bgColor="white"
-        productItems={newArrivalData}
-      />
-      <Section title="Best Sales" bgColor="#f6f9fc" productItems={bestSales} />
-    </Fragment>
+    <div>
+       <h1>Sri Raghavendra Swamy Vrindavana samithi</h1>
+      <br />
+      <h1>3-4-183, Bagh Lingampally, Kachiguda, Hyderabad-500 027</h1>
+      <h1>Ph: No 040-27565333</h1>
+      <h1>Email: srsvs@yahoo.com</h1>
+    </div>
   );
 };
 
